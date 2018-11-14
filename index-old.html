@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Hello World</title>
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+  <script src="https://unpkg.com/create-react-class@15.6.3/create-react-class.min.js"></script>
+  <script src="https://unpkg.com/react-dom-factories@1.0.2/index.js"></script>
+
+  <!-- Don't use this in production: -->
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+
+  <!-- <script src="https://fb.me/react-15.1.0.min.js"></script>
+  <script src="https://fb.me/react-dom-15.1.0.min.js"></script> -->
+  <script src="https://icomoon.io/svgxuse-demo/bower_components/svgxuse/svgxuse.js"></script>
+
+  <style>
+    body {
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: #eee;
+    }
+
+    .icon {
+      width: 200px;
+      height: 200px;
+      margin: 20px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="text/babel">
+    // Definimos a url onde se encontra o sprite
+    const url = 'https://willianjusten.com.br/assets/img/react-svg/sprite.svg';
+
+    // Aqui criamos um componente 
+    // que irá gerar nosso ícone SVG
+    const Icon = (props) => (
+      <svg viewBox='0 0 16 16' className={`icon icon-${props.icon}`}>
+        <use xlinkHref={`${url}#icon-${props.icon}`} />
+      </svg>
+    );
+
+    // Aqui chamamos nossos ícones 
+    // passando a propriedade "icon"
+    ReactDOM.render(
+      <div class="icons">
+        <Icon icon='globe' />
+        <Icon icon='chemistry' />
+        <Icon icon='lamp' />
+      </div>,
+      document.getElementById('app'));
+
+  </script>
+  <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this section for a production-ready setup with JSX:
+      https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project
+
+      In a larger project, you can use an integrated toolchain that includes JSX instead:
+      https://reactjs.org/docs/create-a-new-react-app.html
+
+      You can also use React without JSX, in which case you can remove Babel:
+      https://reactjs.org/docs/react-without-jsx.html
+    -->
+</body>
+
+</html>
