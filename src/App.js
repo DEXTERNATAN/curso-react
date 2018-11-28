@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import "./css/pure-min.css";
 import "./css/side-menu.css";
-import { FormularioAutor, TabelaAutores } from './Autor'
+import { AutorBox } from './Autor'
 
 class App extends Component {
   // constructor(){
@@ -51,8 +51,15 @@ class App extends Component {
             <h1>Cadastro de Autores</h1>
           </div>
           <div className="content" id="content">
-            <FormularioAutor></FormularioAutor>
-            <TabelaAutores></TabelaAutores>
+            {
+              /* 
+              <FormularioAutor></FormularioAutor>
+              <TabelaAutores></TabelaAutores> 
+              */
+            }
+
+            <AutorBox/>
+
           </div>
         </div>
       </div>
