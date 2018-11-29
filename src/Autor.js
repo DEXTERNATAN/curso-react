@@ -3,7 +3,7 @@ import $ from "jquery";
 import InputCustomizado from "./components/InputCustomizado";
 import BotaoSubmitCustomizado from "./components/BotaoSubmitCustomizado";
 import PubSub from 'pubsub-js';
-
+import TratadorErros from './TratadorErros';
 
 class FormularioAutor extends React.Component {
   constructor() {
@@ -32,6 +32,9 @@ class FormularioAutor extends React.Component {
       },
       error: function(resposta) {
         console.log("erro");
+        if(resposta.status === 400) {
+          new TratadorErros().publicaErros(resposta.responseJSON);
+        }
       }
     });
   }
