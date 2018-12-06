@@ -22,6 +22,9 @@ class FormularioAutor extends React.Component {
       contentType: "application/json",
       dataType: "json",
       type: "post",
+      beforeSend: function(){
+        PubSub.publish("limpa-erros",{});
+      },
       data: JSON.stringify({
         nome: this.state.nome,
         email: this.state.email,
@@ -29,7 +32,8 @@ class FormularioAutor extends React.Component {
       }),
       success: function(novaListagem) {
         PubSub.publish('atualiza-lista-autores', novaListagem);
-      },
+        this.setState( { nome:'', email:'', senha:'' });
+      }.bind(this),
       error: function(resposta) {
         console.log("erro");
         if(resposta.status === 400) {
@@ -118,7 +122,7 @@ class TabelaAutores extends React.Component {
   }
 }
 
-export class AutorBox extends React.Component {
+export default class AutorBox extends React.Component {
   
   constructor() {
     super();
@@ -138,14 +142,19 @@ export class AutorBox extends React.Component {
     PubSub.subscribe('atualiza-lista-autores', function(topico,novaLista){
       this.setState({lista:novaLista});
     }.bind(this));
-
+    
   }
 
   render() {
     return (
       <div>
-        <FormularioAutor />
-        <TabelaAutores lista={this.state.lista}/>
+        <div className="header">
+          <h1>Cadastro de autores</h1>
+        </div>
+        <div className="content" id="content">
+          <FormularioAutor />
+          <TabelaAutores lista={this.state.lista}/>
+        </div>
       </div>
     );
   }
